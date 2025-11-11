@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sellamy Store - شحن الخدمات الرقمية</title>
+    <meta name="description" content="Sellamy Store - شحن Snapchat Plus, Netflix, Shahid VIP والخدمات الرقمية بأفضل الأسعار">
+    <meta name="keywords" content="شحن سناب شات, netflix, shahid vip, خدمات رقمية, crunchyroll, TOD">
+    <style>
+        :root {
+            --bg-main: #f8fafc;
+            --bg-card: #ffffff;
+            --accent: #2563eb;
+            --accent-soft: rgba(37,99,235,0.1);
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --border-soft: #e2e8f0;
+            --whatsapp: #25D366;
+            --gradient: linear-gradient(135deg, #2563eb, #3b82f6);
+            --shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06);
+            --shadow-hover: 0 20px 25px -5px rgba(0,0,0,0.1), 0 10px 10px -5px rgba(0,0,0,0.04);
+        }
+        
+        * { 
+            box-sizing: border-box; 
+            margin: 0; 
+            padding: 0; 
+        }
+        
+        body {
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
+            color: var(--text-main);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+        
+        a { 
+            color: inherit; 
+            text-decoration: none; 
+        }
+        
+        .page {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 20px 15px 80px;
+        }
+        
+        header {
+            background: var(--gradient);
+            border-radius: 20px;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            border: none;
+            box-shadow: var(--shadow);
+            margin-bottom: 25px;
+            color: white;
+            transition: transform 0.3s ease;
+        }
+        
+        header:hover {
+            transform: translateY(-3px);
+        }
+        
+        .logo-box {
+            width: 70px;
+            height: 70px;
+            border-radius: 16px;
+            background: rgba(255,255,255,0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid rgba(255,255,255,0.3);
+            font-weight: 800;
+            font-size: 12px;
+            text-align: center;
+            line-height: 1.3;
+            flex-shrink: 0;
+            color: white;
+        }
+        
+        .head-main { 
+            flex: 1; 
+        }
+        
+        .head-title {
+            font-size: 22px;
+            font-weight: 800;
+            letter-spacing: 0.06em;
+        }
+        
+        .head-sub {
+            font-size: 14px;
+            color: rgba(255,255,255,0.9);
+            margin-top: 6px;
+        }
+        
+        .head-sub span { 
+            color: #bbf7d0; 
+            font-weight: 600; 
+        }
+        
+        .welcome {
+            font-size: 13px;
+            color: rgba(255,255,255,0.8);
+            margin-top: 6px;
+        }
+        
+        .head-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        
+        .btn {
+            border-radius: 12px;
+            border: none;
+            padding: 10px 20px;
+            font-size: 14px;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: all 0.3s ease;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-hover);
+        }
+        
+        .btn-whatsapp {
+            background: var(--whatsapp);
+            color: white;
+        }
+        
+        .btn-snap {
+            background: #fffc00;
+            color: #000;
+        }
+        
+        .nav-tabs {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 25px;
+            overflow-x: auto;
+            padding-bottom: 5px;
+        }
+        
+        .nav-tab {
+            padding: 10px 20px;
+            background: var(--bg-card);
+            border-radius: 12px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            border: 1px solid var(--border-soft);
+            transition: all 0.3s ease;
+            white-space: nowrap;
+            box-shadow: var(--shadow);
+        }
+        
+        .nav-tab.active {
+            background: var(--accent);
+            border-color: var(--accent);
+            color: white;
+        }
+        
+        .nav-tab:hover:not(.active) {
+            background: var(--accent-soft);
+            border-color: var(--accent);
+        }
+        
+        main {
+            display: grid;
+            grid-template-columns: minmax(0, 1.4fr) minmax(0, 1.1fr);
+            gap: 20px;
+        }
+        
+        @media (max-width: 880px) {
+            main { 
+                grid-template-columns: minmax(0, 1fr); 
+            }
+            
+            header { 
+                flex-direction: column; 
+                align-items: flex-start; 
+            }
+            
+            .head-actions { 
+                flex-direction: row; 
+                flex-wrap: wrap; 
+                width: 100%;
+            }
+            
+            .nav-tabs { 
+                flex-wrap: wrap; 
+            }
+        }
+        
+        .card {
+            background: var(--bg-card);
+            border-radius: 16px;
+            padding: 20px;
+            border: 1px solid var(--border-soft);
+            box-shadow: var(--shadow);
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+        }
+        
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 10px;
+        }
+        
+        .card-title { 
+            font-size: 16px; 
+            font-weight: 700; 
+        }
+        
+        .badge {
+            border-radius: 12px;
+            border: 1px solid var(--border-soft);
+            font-size: 11px;
+            padding: 4px 10px;
+            color: var(--text-muted);
+            background: var(--bg-main);
+        }
+        
+        .card-desc {
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-bottom: 12px;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 13px;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+        
+        th, td {
+            padding: 10px 8px;
+            text-align: center;
+            border-bottom: 1px solid var(--border-soft);
+        }
+        
+        th {
+            background: var(--bg-main);
+            color: var(--text-main);
+            font-weight: 600;
+        }
+        
+        tr:last-child td { 
+            border-bottom: none; 
+        }
+        
+        tr:hover {
+            background: var(--accent-soft);
+        }
+        
+        .price {
+            font-weight: 700;
+            color: #059669;
+        }
+        
+        .btn-mini {
+            border-radius: 8px;
+            border: 1px solid #10b981;
+            background: rgba(16,185,129,0.1);
+            color: #059669;
+            font-size: 11px;
+            padding: 6px 12px;
+            cursor: pointer;
+            white-space: nowrap;
+            display: inline-block;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+        
+        .btn-mini:hover {
+            background: #10b981;
+            color: white;
+            transform: scale(1.05);
+        }
+        
+        .section-title {
+            font-size: 15px;
+            font-weight: 700;
+            margin: 12px 0 8px;
+            color: var(--accent);
+        }
+        
+        .pill-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-bottom: 8px;
+        }
+        
+        .pill {
+            border-radius: 12px;
+            border: 1px solid var(--border-soft);
+            font-size: 11px;
+            padding: 4px 10px;
+            background: var(--bg-main);
+            color: var(--text-main);
+        }
+        
+        .pill-accent {
+            background: var(--accent-soft);
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+        
+        .founder-card {
+            margin-top: 12px;
+            padding-top: 12px;
+            border-top: 1px dashed var(--border-soft);
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+        
+        .founder-card strong { 
+            color: var(--text-main); 
+        }
+        
+        footer {
+            margin-top: 30px;
+            font-size: 12px;
+            color: var(--text-muted);
+            text-align: center;
+            padding: 20px;
+            background: var(--bg-card);
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+        }
+        
+        .floating-top {
+            position: fixed;
+            left: 20px;
+            bottom: 20px;
+            z-index: 30;
+        }
+        
+        .floating-top button {
+            border-radius: 12px;
+            border: 1px solid var(--border-soft);
+            background: var(--bg-card);
+            color: var(--text-main);
+            font-size: 13px;
+            padding: 10px 16px;
+            cursor: pointer;
+            box-shadow: var(--shadow-hover);
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+        
+        .floating-top button:hover {
+            transform: translateY(-3px);
+            background: var(--accent);
+            color: white;
+            border-color: var(--accent);
+        }
+        
+        .offers-section {
+            margin-bottom: 25px;
+        }
+        
+        .offer-card {
+            background: var(--gradient);
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 15px;
+            border: none;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            color: white;
+            box-shadow: var(--shadow);
+        }
+        
+        .offer-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            background: rgba(255,255,255,0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            flex-shrink: 0;
+        }
+        
+        .offer-content {
+            flex: 1;
+        }
+        
+        .offer-title {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+        
+        .offer-desc {
+            font-size: 13px;
+            color: rgba(255,255,255,0.9);
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        
+        @keyframes fadeIn {
+            from { 
+                opacity: 0; 
+                transform: translateY(10px); 
+            }
+            to { 
+                opacity: 1; 
+                transform: translateY(0); 
+            }
+        }
+        
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(37, 99, 235, 0.4);
+            }
+            70% {
+                box-shadow: 0 0 0 10px rgba(37, 99, 235, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(37, 99, 235, 0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page" id="top">
+        <header>
+            <div class="logo-box">SELLAMY<br>STORE</div>
+            <div class="head-main">
+                <div class="head-title">SELLAMYSTORE.COM</div>
+                <div class="head-sub">
+                    شحن <span>Snapchat Plus</span>، Netflix، Shahid VIP، والخدمات الرقمية الأخرى.
+                </div>
+                <div class="welcome">
+                    مرحباً بك في Sellamy Store 👋 – كل خدماتك الرقمية في مكان واحد، بخدمة سريعة.
+                </div>
+            </div>
+            <div class="head-actions">
+                <a class="btn btn-whatsapp pulse" href="https://wa.me/31626249?text=%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%20%D8%B9%D9%84%D9%8A%D9%83%D9%85%D8%8C%20%D8%A3%D8%B1%D9%8A%D8%AF%20%D8%A7%D9%84%D8%B7%D9%84%D8%A8%20%D9%85%D9%86%20Sellamy%20Store.">
+                    📲 تواصل واتساب
+                </a>
+                <a class="btn btn-snap" href="https://snapchat.com/t/SCTCVGKs" target="_blank">👻 سناب شات</a>
+            </div>
+        </header>
+
+        <div class="offers-section">
+            <div class="offer-card">
+                <div class="offer-icon">🔥</div>
+                <div class="offer-content">
+                    <div class="offer-title">عرض خاص هذا الأسبوع!</div>
+                    <div class="offer-desc">خصم 10% على جميع الخدمات عند الطلب عبر الواتساب</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="nav-tabs">
+            <div class="nav-tab active" data-tab="all">جميع الخدمات</div>
+            <div class="nav-tab" data-tab="social">وسائل التواصل</div>
+            <div class="nav-tab" data-tab="streaming">البث المباشر</div>
+        </div>
+
+        <main>
+            <section>
+                <div class="card fade-in" data-category="social">
+                    <div class="card-header">
+                        <div class="card-title">👻 Snapchat Plus</div>
+                        <div class="badge">حسابك الشخصي</div>
+                    </div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>المدة</th>
+                                <th>السعر (MRU)</th>
+                                <th>طلب</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>3 mois</td>
+                                <td class="price">260 MRU</td>
+                                <td><a class="btn-mini" href="https://wa.me/31626249?text=طلب%20Snapchat%20Plus%203%20mois%20بسعر%20260%20MRU">اطلب عبر واتساب</a></td>
+                            </tr>
+                            <tr>
+                                <td>6 mois</td>
+                                <td class="price">550 MRU</td>
+                                <td><a class="btn-mini" href="https://wa.me/31626249?text=طلب%20Snapchat%20Plus%206%20mois%20بسعر%20550%20MRU">اطلب عبر واتساب</a></td>
+                            </tr>
+                            <tr>
+                                <td>12 mois</td>
+                                <td class="price">1270 MRU</td>
+                                <td><a class="btn-mini" href="https://wa.me/31626249?text=طلب%20Snapchat%20Plus%2012%20mois%20بسعر%201270%20MRU">اطلب عبر واتساب</a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="card fade-in" data-category="streaming">
+                    <div class="card-header">
+                        <div class="card-title">🎬 Netflix</div>
+                        <div class="badge">Feneter / Compte complet</div>
+                    </div>
+
+                    <div class="section-title">Feneter</div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>المدة</th>
+                                <th>السعر (MRU)</th>
+                                <th>طلب</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1 mois</td>
+                                <td class="price">250 MRU</td>
+                                <td><a class="btn-mini" href="https://wa.me/31626249?text=طلب%20Netflix%20Feneter%201%20mois%20بسعر%20250%20MRU">اطلب</a></td>
+                            </tr>
+                            <tr>
+                                <td>2 mois</td>
+                                <td class="price">500 MRU</td>
+                                <td><a class="btn-mini" href="https://wa.me/31626249?text=طلب%20Netflix%20Feneter%202%20mois%20بسعر%20500%20MRU">اطلب</a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="section-title">Compte complet</div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>المدة</th>
+                                <th>السعر (MRU)</th>
+                                <th>طلب</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1 mois</td>
+                                <td class="price">700 MRU</td>
+                                <td><a class="btn-mini" href="https://wa.me/31626249?text=طلب%20Netflix%20Compte%20complet%201%20mois%20بسعر%20700%20MRU">اطلب</a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="card fade-in" data-category="streaming">
+                    <div class="card-header">
+                        <div class="card-title">📺 Shahid VIP</div>
+                        <div class="badge">Feneter</div>
+                    </div>
+
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>المدة</th>
+                                <th>السعر (MRU)</th>
+                                <th>طلب</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1 mois</td>
+                                <td class="price">280 MRU</td>
+                                <td><a class="btn-mini" href="https://wa.me/31626249?text=طلب%20Shahid%20VIP%201%20mois%20بسعر%20280%20MRU">اطلب</a></td>
+                            </tr>
+                            <tr>
+                                <td>2 mois</td>
+                                <td class="price">520 MRU</td>
+                                <td><a class="btn-mini" href="https://wa.me/31626249?text=طلب%20Shahid%20VIP%202%20mois%20بسعر%20520%20MRU">اطلب</a></td>
+                            </tr>
+                            <tr>
+                                <td>3 mois</td>
+                                <td class="price">1120 MRU</td>
+                                <td><a class="btn-mini" href="https://wa.me/31626249?text=طلب%20Shahid%20VIP%203%20mois%20بسعر%201120%20MRU">اطلب</a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <aside>
+                <div class="card fade-in" data-category="streaming">
+                    <div class="card-header">
+                        <div class="card-title">📺 خدمات بث جديدة</div>
+                        <div class="badge">Crunchyroll / TOD</div>
+                    </div>
+
+                    <div class="section-title">Crunchyroll</div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>المدة</th>
+                                <th>السعر (MRU)</th>
+                                <th>طلب</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1 mois</td>
+                                <td class="price">150 MRU</td>
+                                <td><a class="btn-mini" href="https://wa.me/31626249?text=طلب%20Crunchyroll%201%20mois%20بسعر%20150%20MRU">اطلب</a></td>
+                            </tr>
+                            <tr>
+                                <td>2 mois</td>
+                                <td class="price">300 MRU</td>
+                                <td><a class="btn-mini" href="https://wa.me/31626249?text=طلب%20Crunchyroll%202%20mois%20بسعر%20300%20MRU">اطلب</a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="section-title">TOD</div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>المدة</th>
+                                <th>السعر (MRU)</th>
+                                <th>طلب</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1 mois</td>
+                                <td class="price">280 MRU</td>
+                                <td><a class="btn-mini" href="https://wa.me/31626249?text=طلب%20TOD%201%20mois%20بسعر%20280%20MRU">اطلب</a></td>
+                            </tr>
+                            <tr>
+                                <td>2 mois</td>
+                                <td class="price">560 MRU</td>
+                                <td><a class="btn-mini" href="https://wa.me/31626249?text=طلب%20TOD%202%20mois%20بسعر%20560%20MRU">اطلب</a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="card fade-in" data-category="tools">
+                    <div class="card-header">
+                        <div class="card-title">🤖 خدمات الذكاء الاصطناعي</div>
+                        <div class="badge">ChatGPT Plus</div>
+                    </div>
+
+                    <div class="section-title">ChatGPT Plus</div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>المدة</th>
+                                <th>السعر (MRU)</th>
+                                <th>طلب</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1 mois</td>
+                                <td class="price">800 MRU</td>
+                                <td><a class="btn-mini" href="https://wa.me/31626249?text=طلب%20ChatGPT%20Plus%201%20mois%20بسعر%20800%20MRU">اطلب</a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="card fade-in" data-category="payment">
+                    <div class="card-header">
+                        <div class="card-title">💵 بطاقات iTunes</div>
+                        <div class="badge">Gift Cards</div>
+                    </div>
+
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>القيمة</th>
+                                <th>السعر (MRU)</th>
+                                <th>طلب</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>10$</td>
+                                <td class="price">550 MRU</td>
+                                <td><a class="btn-mini" href="https://wa.me/31626249?text=طلب%20iTunes%20Gift%20Card%2010$%20بسعر%20550%20MRU">اطلب</a></td>
+                            </tr>
+                            <tr>
+                                <td>15$</td>
+                                <td class="price">800 MRU</td>
+                                <td><a class="btn-mini" href="https://wa.me/31626249?text=طلب%20iTunes%20Gift%20Card%2015$%20بسعر%20800%20MRU">اطلب</a></td>
+                            </tr>
+                            <tr>
+                                <td>25$</td>
+                                <td class="price">1300 MRU</td>
+                                <td><a class="btn-mini" href="https://wa.me/31626249?text=طلب%20iTunes%20Gift%20Card%2025$%20بسعر%201300%20MRU">اطلب</a></td>
+                            </tr>
+                            <tr>
+                                <td>50$</td>
+                                <td class="price">2400 MRU</td>
+                                <td><a class="btn-mini" href="https://wa.me/31626249?text=طلب%20iTunes%20Gift%20Card%2050$%20بسعر%202400%20MRU">اطلب</a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="founder-card">
+                        <div><strong>مؤسس الموقع:</strong> SELLAMY ABDRRAHMAN</div>
+                        <div><strong>واتساب:</strong> <a href="https://wa.me/31626249" target="_blank">31626249</a></div>
+                        <div><strong>سناب شات:</strong> <a href="https://snapchat.com/t/SCTCVGKs" target="_blank">Sellamy Store</a></div>
+                    </div>
+                </div>
+            </aside>
+        </main>
+
+        <footer>
+            SellamyStore.com — منصة رقمية لشحن الخدمات أونلاين. الأسعار حسب القائمة ويمكن تعديلها في أي وقت حسب العروض وسعر العملة.
+        </footer>
+    </div>
+
+    <div class="floating-top">
+        <button onclick="window.scrollTo({top:0,behavior:'smooth'})">⬆ رجوع للأعلى</button>
+    </div>
+
+    <script>
+        document.querySelectorAll('.nav-tab').forEach(tab => {
+            tab.addEventListener('click', function() {
+                document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+                this.classList.add('active');
+                
+                const category = this.getAttribute('data-tab');
+                const cards = document.querySelectorAll('.card');
+                
+                cards.forEach(card => {
+                    if (category === 'all') {
+                        card.style.display = 'block';
+                    } else {
+                        if (card.getAttribute('data-category') === category) {
+                            card.style.display = 'block';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    }
+                });
+            });
+        });
+        
+        document.querySelectorAll('.btn-mini').forEach(btn => {
+            btn.addEventListener('mouseenter', function() {
+                this.style.transform = 'scale(1.1)';
+            });
+            
+            btn.addEventListener('mouseleave', function() {
+                this.style.transform = 'scale(1)';
+            });
+        });
+        
+        setInterval(() => {
+            document.querySelector('.offer-card').classList.toggle('pulse');
+        }, 3000);
+    </script>
+</body>
+</html>
